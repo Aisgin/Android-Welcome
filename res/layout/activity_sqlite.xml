@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   android:gravity="center"
+    android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/et_sqlite_User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/users"
+            android:hint="@string/user_hint"
+            android:ems="13" />
+
+        <EditText
+            android:id="@+id/et_sqlite_Pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/pwd"
+            android:hint="@string/pwd_hint"
+            android:ems="13"
+            android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_sqlite_intert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/sqlite_intert" />
+
+    <Button
+        android:id="@+id/btn_sqlite_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/sqlite_delete" />
+
+    <Button
+        android:id="@+id/btn_sqlite_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/sqlite_update" />
+
+    <Button
+        android:id="@+id/btn_sqlite_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/sqlite_query" />
+
+</LinearLayout>

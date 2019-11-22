@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageR1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo" />
+
+
+
+        <EditText
+            android:id="@+id/etRUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/users"
+            android:hint="@string/user_hint"
+            android:ems="13" />
+
+
+
+
+        <EditText
+            android:id="@+id/etRPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/pwd"
+            android:hint="@string/pwd_hint"
+            android:ems="13"
+            android:inputType="textPassword" />
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp" >
+
+
+            <Button
+                android:id="@+id/imageBtnResetting"
+                android:layout_width="20dp"
+                android:layout_weight="3"
+                android:layout_height="42dp"
+                android:layout_marginLeft="10dp"
+                android:shape="oval"
+                android:textColor="#278BE0"
+                android:background="@drawable/btn_shape_white"
+                android:text="@string/register_resetting" />
+        
+
+            <Button
+                android:id="@+id/btn_reg_back"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="42dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="right"
+                android:shape="oval"
+                android:textColor="#278BE0"
+                android:background="@drawable/btn_shape_white"
+                android:text="@string/back_login" />
+       
+    </LinearLayout>
+
+			<Button
+                android:id="@+id/imageBtnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:shape="oval"
+                android:textColor="#ffffff"
+                android:background="@drawable/btn_shape_blue"
+                android:text="@string/register_submit" />
+</LinearLayout>

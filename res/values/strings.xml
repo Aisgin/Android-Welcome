@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tick</string>
+    <string name="app_name_longin_success">Successful Landing</string>
+    <string name="app_name_register">Register</string>
+    <string name="app_name_login">Sgin in</string>
+    <string name="action_settings">Settings</string>
+    <string name="rts">广告剩余时间：</string>
+	<string name="phone_hint">输入电话号码</string>
+	<string name="phone_title">电话号码：</string>
+	<string name="sms_hint">输入短讯内容</string>
+	<string name="sms_title">短讯内容：</string>
+	<string name="phone_bt_name">拨打电话</string>
+	<string name="sms_bt_name">发送短讯</string>
+	<string name="photo_name">advertisement</string>
+	<string name="user">用户名：</string>
+	<string name="pwd">密码：</string>
+	<string name="user_hint">请输入用户名</string>
+	<string name="pwd_hint">请输入密码</string>
+	<string name="back_login">返回登陆页</string>
+	<string name="register_resetting">重置</string>
+	<string name="register_submit">提交</string>
+	<string name="forgetpwd">忘记密码?</string>
+	<string name="rememberpwd">记住密码</string>
+	<string name="register_btn">注册按钮</string>
+	<string name="login_btn">登陆按钮</string>
+	<string name="countdown"> 后关闭</string>
+	<string name="advertisement_image">广告图片</string>
+	<string name="over_time">3s</string>
+	<string name="app_name_operatesqlite">数据库操作</string>
+	<string name="sqlite_intert">intert of a user</string>
+	<string name="sqlite_delete">delete of a user</string>
+	<string name="sqlite_update">update of a user</string>
+	<string name="sqlite_query">query of a user</string>
+</resources>
