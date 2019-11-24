@@ -1,6 +1,7 @@
 package com.zhbit.login;
 
 import com.zhbit.dao.User;
+import com.zhbit.sql.MyDatabaseOpenHelper;
 import com.zhbit.utils.UserInfoUtils;
 import com.zhbit.hellowelcome.R;
 import android.app.Activity;
@@ -25,12 +26,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private TextView tv_forgetpwd;
 	private CheckBox cb_save;
 	private Context mcontext;
+	private MyDatabaseOpenHelper helper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
+		helper = MyDatabaseOpenHelper.getInstance(this);
 		mcontext = this;
 		initView();
 		getInfo();
@@ -83,28 +86,44 @@ public class LoginActivity extends Activity implements OnClickListener {
 		String userStr = etUser.getText().toString().trim();
 		String pwdStr = etPwd.getText().toString().trim();
 		if (TextUtils.isEmpty(userStr)) {
-			message("登陆失败，用户名为空");
+			message("请输入用户名");
 		} else if (TextUtils.isEmpty(pwdStr)) {
-			message("登陆失败，密码为空");
+			message("请输入密码为空");
 		} else {
-			message("登陆成功");
-			User user = new User();
-			user.setName(userStr);
-			user.setPwd(pwdStr);
-			boolean result = cb_save.isChecked(); // 勾选的状态
-			if (result) {
-				if(save(user)){
-					message("保存成功！");
-				} else {
-					message("保存失败！");
-				}	
+			if(checkPwd() == 1){
+				message("登陆成功");
+				User user = new User();
+				user.setName(userStr);
+				user.setPwd(pwdStr);
+				boolean result = cb_save.isChecked(); // 勾选的状态
+				if (result) {
+					if(save(user)){
+						message("保存成功！");
+					} else {
+						message("保存失败！");
+					}	
+				}
+				Intent intent = new Intent(LoginActivity.this,
+						LoginSuccessActivity.class);
+				intent.putExtra("user", user);
+				startActivity(intent);
+				LoginActivity.this.finish();
+			}else{
+				message("登陆失败，密码错误或用户名未注册");
 			}
-			Intent intent = new Intent(LoginActivity.this,
-					LoginSuccessActivity.class);
-			intent.putExtra("user", user);
-			startActivity(intent);
-			LoginActivity.this.finish();
+			
 		}
+	}
+	
+	private int checkPwd(){
+		int result = -1;
+		User user = new User();
+		user.setName(etUser.getText().toString().trim());
+		String pwd = helper.queryData(user);
+		if ( pwd.equals(etPwd.getText().toString().trim())){
+			result = 1;
+		}
+		return result;
 	}
 	
 	private void forgetpwd(){

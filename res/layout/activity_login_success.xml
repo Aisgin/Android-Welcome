@@ -90,6 +90,6 @@
         android:id="@+id/sqltest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="数据库测试" />
     
 </LinearLayout>

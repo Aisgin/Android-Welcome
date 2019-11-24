@@ -30,7 +30,6 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		mcontext = this;
 		initView();
 		helper = MyDatabaseOpenHelper.getInstance(this);
-	    System.out.println("++++++++++++++"+helper);
 	}
 	
 	private void initView(){
@@ -44,7 +43,6 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		delete.setOnClickListener(this);
 		update.setOnClickListener(this);
 		query.setOnClickListener(this);
-		
 	}
 	
 	@Override
@@ -98,18 +96,27 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		helper.updateData(user);
-		
+		int number = helper.updateData(user);
+		if (number != -1){
+			message("修改成功");
+		} else {
+			message("修改失败");
+		}
 	}
 
 	private void query() {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		helper.queryData(user);
-		
+		String pwd = helper.queryData(user);
+		message(pwd);
 	}
-
+	
+	private void message(String mes) {
+		Toast toast = Toast.makeText(mcontext, mes,
+				Toast.LENGTH_SHORT);
+		toast.show();
+	}
 	
 	
 }

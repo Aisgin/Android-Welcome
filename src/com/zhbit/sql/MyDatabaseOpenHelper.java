@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 
-	// 得到类的简写名称
+	//得到类的简写名称
 	private final static String TAG = MyDatabaseOpenHelper.class.getSimpleName();
 
 	//数据库名称
@@ -54,7 +54,6 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 
 	/**
 	 * 继承SQLiteOpenHelper抽象类 重写的创表方法，此SQLiteDatabase db 不能关闭, 没有数据库存在才会执行
-	 * 
 	 * @param db
 	 */
 	@Override
@@ -83,7 +82,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 *            传递User实例
 	 */
 	public void insertData(User user) {
-		SQLiteDatabase database = getWritableDatabase();
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			System.out.println("11111111111111"+user.getName());
 			System.out.println("222222222222222"+user.getPwd());
@@ -109,7 +108,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 *            传递User集合
 	 */
 	public void insertData(List<User> users) {
-		SQLiteDatabase database = getWritableDatabase();
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			for (User user : users) {
 				ContentValues contentValues = new ContentValues();
@@ -135,11 +134,12 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 * @param user
 	 *            传递User实例； username唯一
 	 */
-	public void deleteData(User user) {
-		SQLiteDatabase database = getWritableDatabase();
+	public int deleteData(User user) {
+		int number = -1;
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			String[] names = { user.getName() };
-			database.delete(TABLE_NAME, "name=?", names);
+			number = database.delete(TABLE_NAME, "name=?", names);
 			message("删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,6 +149,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 				database.close();
 			}
 		}
+		return number;
 	}
 
 	/**
@@ -157,8 +158,9 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 * @param users
 	 *            传递User集合
 	 */
-	public void deleteData(List<User> users) {
-		SQLiteDatabase database = getWritableDatabase();
+	public int deleteData(List<User> users) {
+		int number = -1;
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			ArrayList<String> nameList = new ArrayList<String>();
 			for (User user : users) {
@@ -166,7 +168,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 			}
 			String[] names = (String[]) nameList.toArray();
 			// delete()是否可一次删除多条？
-			database.delete(TABLE_NAME, "name=?", names);
+			number = database.delete(TABLE_NAME, "name=?", names);
 			message("删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,6 +178,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 				database.close();
 			}
 		}
+		return number;
 	}
 
 	/**
@@ -184,14 +187,15 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 * @param user
 	 *            传递User实例； username唯一
 	 */
-	public void updateData(User user) {
-		SQLiteDatabase database = getWritableDatabase();
+	public int updateData(User user) {
+		int number = -1;
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			ContentValues contentValues = new ContentValues();
 			contentValues.put("name", user.getName());
 			contentValues.put("pwd", user.getPwd());
 			String[] names = { user.getName() };
-			database.update(TABLE_NAME, contentValues, "name=?", names);
+			number = database.update(TABLE_NAME, contentValues, "name=?", names);
 			message("更改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -201,6 +205,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 				database.close();
 			}
 		}
+		return number;
 	}
 	
 	/**
@@ -218,12 +223,18 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 * orderBy 排序,
 	 * limit 分页
 	 */
-	public void queryData (User user){
-		SQLiteDatabase database = getReadableDatabase();
+	public String queryData (User user){
+		String pwd = "";
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getReadableDatabase();
 		try {
 			String[] names = { user.getName() };
-			database.query(TABLE_NAME, new String[]{"user","pwd"}, "name=?", names, null, null, null, null);
-			message("查找成功");
+			Cursor cursor = database.query(TABLE_NAME, null, "name=?", names, null, null, null);
+			if(cursor.moveToNext()){
+				int pwdIndex = cursor.getColumnIndex("pwd");
+				pwd = cursor.getString(pwdIndex);
+			}
+			message(pwd);
+			cursor.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.e(TAG, "query单条异常：" + e.toString());
@@ -232,6 +243,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 				database.close();
 			}
 		}
+		return pwd;
 	}
 	private void message(String mes) {
 		Toast toast = Toast.makeText(mcontext, mes,
