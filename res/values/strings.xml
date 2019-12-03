@@ -33,4 +33,6 @@
 	<string name="sqlite_delete">delete of a user</string>
 	<string name="sqlite_update">update of a user</string>
 	<string name="sqlite_query">query of a user</string>
+	<string name="app_name_list">List操作</string>
+	<string name="image_setting">视觉障碍助听</string>
 </resources>

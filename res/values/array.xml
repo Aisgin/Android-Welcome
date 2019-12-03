@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_listString">
+	    <item >Personal</item>
+	    <item >More Option</item>
+	    <item >Contact Us</item>
+	    <item >About Us</item>
+	    <item >Login Out</item>
+	</string-array>
+</resources>
