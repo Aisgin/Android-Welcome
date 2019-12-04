@@ -22,11 +22,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListActivity extends Activity implements OnItemClickListener {
+public class UserListActivity extends Activity implements OnItemClickListener {
 	private ListView listView;
-	private TextView nameText;
-	private String[] from = { "img", "text" };
-	private int[] to = { R.id.iv, R.id.tv };
+	private String[] from = { "name", "pwd" };
+	private int[] to = { R.id.tv_userlist_name, R.id.tv_userlist_pwd };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +38,9 @@ public class ListActivity extends Activity implements OnItemClickListener {
 
 	private void initView() {
 
-		listView = (ListView) findViewById(R.id.listView1);
-		nameText = (TextView) findViewById(R.id.info_username);
-		Intent intent = getIntent();
-		User user = (User) intent.getSerializableExtra("user");
-		nameText.setText(user.getName());
+		listView = (ListView) findViewById(R.id.info_users);
 		SimpleAdapter simpleAdapter = new SimpleAdapter(this, getData(),
-				R.layout.activity_list_item, from, to);
+				R.layout.activity_userlist_item, from, to);
 		listView.setAdapter(simpleAdapter);
 		listView.setOnItemClickListener(this);
 	}
@@ -86,37 +81,8 @@ public class ListActivity extends Activity implements OnItemClickListener {
 			long id) {
 		// TODO Auto-generated method stub
 
-		message(position + "@@@" + id);
-		switch (position) {
-		case 0:
-
-			break;
-
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			toAboutUsActivity();
-			break;
-		case 4:
-			toLoginActivity();
-			break;
-		default:
-			message("错误点击，请联系我们");
-			break;
-		}
+		
 	}
 	
-	private void toAboutUsActivity(){
-		Intent intent = new Intent(ListActivity.this, AboutUsActivity.class);
-		startActivity(intent);
-		ListActivity.this.finish();
-	}
-
-	private void toLoginActivity() {
-		Intent intent = new Intent(ListActivity.this, LoginActivity.class);
-		startActivity(intent);
-		ListActivity.this.finish();
-	}
+	
 }

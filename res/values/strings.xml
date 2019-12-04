@@ -5,6 +5,8 @@
     <string name="app_name_longin_success">Successful Landing</string>
     <string name="app_name_register">Register</string>
     <string name="app_name_login">Sgin in</string>
+    <string name="app_name_aboutus">About Us</string>
+    <string name="app_name_user_list">List of User</string>
     <string name="action_settings">Settings</string>
     <string name="rts">广告剩余时间：</string>
 	<string name="phone_hint">输入电话号码</string>
@@ -33,6 +35,15 @@
 	<string name="sqlite_delete">delete of a user</string>
 	<string name="sqlite_update">update of a user</string>
 	<string name="sqlite_query">query of a user</string>
+	<string name="sqlite_querys">query of all users</string>
 	<string name="app_name_list">List操作</string>
 	<string name="image_setting">视觉障碍助听</string>
+	<string name="aboutus_app_name">Tick</string>
+	<string name="aboutus_author">Author:</string>
+	<string name="aboutus_author_name">170802103048</string>
+	<string name="aboutus_connection">Connection:</string>
+	<string name="aboutus_connection_values">z1009178542@163.com</string>
+	<string name="aboutus_teacher">Teacher:</string>
+	<string name="aboutus_teacher_name">Miss Zhang</string>
+	<string name="aboutus_back">返回</string>
 </resources>

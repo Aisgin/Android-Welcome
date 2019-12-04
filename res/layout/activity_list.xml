@@ -13,6 +13,15 @@
         android:scaleType="centerCrop"
         android:src="@drawable/head" />
     
+     <TextView
+        android:id="@+id/info_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/info_head"
+        android:layout_marginBottom="18dp"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/info_head"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <ListView
         android:layout_below="@+id/info_head"
@@ -22,15 +31,6 @@
         android:layout_height="wrap_content" >
     </ListView>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/info_head"
-        android:layout_marginBottom="18dp"
-        android:layout_marginLeft="19dp"
-        android:layout_toRightOf="@+id/info_head"
-        android:text="用户名"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+   
 
 </RelativeLayout>

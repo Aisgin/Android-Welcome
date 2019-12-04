@@ -245,9 +245,36 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 		}
 		return pwd;
 	}
+	
+	public ArrayList<User> queryUsers(){
+		ArrayList<User> users = new ArrayList<User>();
+		SQLiteDatabase database = mySQLiteOpenHelperStudent.getReadableDatabase();
+		try {
+			Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null);
+			if(cursor.moveToNext()){
+				User user = new User();
+				int nameIndex = cursor.getColumnIndex("name");
+				int pwdIndex = cursor.getColumnIndex("pwd");
+				user.setName(cursor.getString(nameIndex));
+				user.setPwd(cursor.getString(pwdIndex));
+				users.add(user);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			Log.e(TAG, "query单条异常：" + e.toString());
+		} finally {
+			if (null != database) {
+				database.close();
+			}
+		}
+		
+		return users;
+		
+	}
 	private void message(String mes) {
 		Toast toast = Toast.makeText(mcontext, mes,
 				Toast.LENGTH_SHORT);
 		toast.show();
 	}
+	
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/image_aboutus_logo"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tv_aboutus_appname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/aboutus_app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="84sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_aboutus_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#737373"
+        android:text="@string/aboutus_author"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv_aboutus_authorname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/aboutus_author_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tv_aboutus_connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#737373"
+        android:text="@string/aboutus_connection"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv_aboutus_connectionvalues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/aboutus_connection_values"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tv_aboutus_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#737373"
+        android:text="@string/aboutus_teacher"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv_aboutus_teachername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/aboutus_teacher_name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btn_aboutus_back"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="right"
+        android:background="@drawable/btn_shape_white"
+        android:shape="oval"
+        android:text="@string/aboutus_back"
+        android:textColor="#278BE0" />
+
+</LinearLayout>

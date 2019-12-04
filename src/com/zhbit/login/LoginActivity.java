@@ -104,7 +104,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					}	
 				}
 				Intent intent = new Intent(LoginActivity.this,
-						LoginSuccessActivity.class);
+						ListActivity.class);
 				intent.putExtra("user", user);
 				startActivity(intent);
 				LoginActivity.this.finish();
