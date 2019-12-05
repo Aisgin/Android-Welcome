@@ -64,7 +64,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+         <activity
             android:name="com.zhbit.login.UserListActivity"
             android:label="@string/app_name_user_list" >
             <intent-filter>

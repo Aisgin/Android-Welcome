@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -246,26 +247,41 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 		return pwd;
 	}
 	
+	/**
+	 * 打印 user 表全部内容
+	 * @return
+	 */
+	
 	public ArrayList<User> queryUsers(){
 		ArrayList<User> users = new ArrayList<User>();
 		SQLiteDatabase database = mySQLiteOpenHelperStudent.getReadableDatabase();
 		try {
-			Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null);
-			if(cursor.moveToNext()){
+			String[] names = { null };
+			Cursor cursor = database.query(TABLE_NAME, null, "name!=?", names, null, null, null);
+			while(cursor.moveToNext()){
 				User user = new User();
 				int nameIndex = cursor.getColumnIndex("name");
 				int pwdIndex = cursor.getColumnIndex("pwd");
+				if (cursor.getString(nameIndex) == null
+						|| cursor.getString(pwdIndex) == null) {
+					continue;
+				}
 				user.setName(cursor.getString(nameIndex));
 				user.setPwd(cursor.getString(pwdIndex));
 				users.add(user);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			Log.e(TAG, "query单条异常：" + e.toString());
+			Log.e(TAG, "query多条异常：" + e.toString());
 		} finally {
 			if (null != database) {
 				database.close();
 			}
+		}
+		
+		for(int i=0;i<users.size();i++){
+			System.out.println(users.get(i).getName());
+			System.out.println(users.get(i).getPwd());
 		}
 		
 		return users;

@@ -46,4 +46,5 @@
 	<string name="aboutus_teacher">Teacher:</string>
 	<string name="aboutus_teacher_name">Miss Zhang</string>
 	<string name="aboutus_back">返回</string>
+	<string name="userliist_back">返回</string>
 </resources>

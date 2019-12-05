@@ -6,6 +6,7 @@ import com.zhbit.sql.MyDatabaseOpenHelper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 public class OperateSQLite extends Activity implements OnClickListener {
 	
 	private EditText etUser, etPwd;
-	private Button intert, delete, update, query;
+	private Button intert, delete, update, query, queryUsers;
 	private Context mcontext;
 	private MyDatabaseOpenHelper helper;
 	
@@ -39,10 +40,12 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		delete = (Button) findViewById(R.id.btn_sqlite_delete);
 		update = (Button) findViewById(R.id.btn_sqlite_update);
 		query = (Button) findViewById(R.id.btn_sqlite_query);
+		queryUsers = (Button)findViewById(R.id.btn_sqlite_querys);
 		intert.setOnClickListener(this);
 		delete.setOnClickListener(this);
 		update.setOnClickListener(this);
 		query.setOnClickListener(this);
+		queryUsers.setOnClickListener(this);
 	}
 	
 	@Override
@@ -72,7 +75,9 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		case R.id.btn_sqlite_query:
 			query();
 			break;
-
+		case R.id.btn_sqlite_querys:
+			queryUsers();
+			break;
 		default:
 			break;
 		}
@@ -110,6 +115,13 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		user.setPwd(etPwd.getText().toString().trim());
 		String pwd = helper.queryData(user);
 		message(pwd);
+	}
+	
+	private void queryUsers(){
+		System.out.print("to UserListActivity");
+		Intent intent = new Intent(OperateSQLite.this, UserListActivity.class);
+		startActivity(intent);
+		OperateSQLite.this.finish();
 	}
 	
 	private void message(String mes) {
