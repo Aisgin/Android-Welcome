@@ -41,6 +41,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		update = (Button) findViewById(R.id.btn_sqlite_update);
 		query = (Button) findViewById(R.id.btn_sqlite_query);
 		queryUsers = (Button)findViewById(R.id.btn_sqlite_querys);
+		
 		intert.setOnClickListener(this);
 		delete.setOnClickListener(this);
 		update.setOnClickListener(this);

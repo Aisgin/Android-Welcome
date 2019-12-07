@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	private static final int version = 1;
 
 	//表名
-	private static final String TABLE_NAME = "user";
+	private static final String USER_NAME = "user";
 	
 	private Context mcontext;
 
@@ -60,7 +58,8 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		Log.i("Log","没有数据库,创建数据库");
-		String sql_message = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL, pwd VARCHAR(100) NOT NULL);";
+		// 创建User表
+		String sql_message = "CREATE TABLE IF NOT EXISTS " + USER_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL, pwd VARCHAR(100) NOT NULL);";
 		db.execSQL(sql_message);
 	}
 
@@ -85,12 +84,10 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	public void insertData(User user) {
 		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
-			System.out.println("11111111111111"+user.getName());
-			System.out.println("222222222222222"+user.getPwd());
 			ContentValues contentValues = new ContentValues();
 			contentValues.put("name", user.getName());
 			contentValues.put("pwd", user.getPwd());
-			database.insert(TABLE_NAME, "_id", contentValues);
+			database.insert(USER_NAME, "_id", contentValues);
 			message("插入成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,7 +113,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 				contentValues.clear();
 				contentValues.put("name", user.getName());
 				contentValues.put("pwd", user.getPwd());
-				database.insert(TABLE_NAME, null, contentValues);
+				database.insert(USER_NAME, null, contentValues);
 				message("插入成功");
 			}
 		} catch (Exception e) {
@@ -140,7 +137,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 		SQLiteDatabase database = mySQLiteOpenHelperStudent.getWritableDatabase();
 		try {
 			String[] names = { user.getName() };
-			number = database.delete(TABLE_NAME, "name=?", names);
+			number = database.delete(USER_NAME, "name=?", names);
 			message("删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -169,7 +166,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 			}
 			String[] names = (String[]) nameList.toArray();
 			// delete()是否可一次删除多条？
-			number = database.delete(TABLE_NAME, "name=?", names);
+			number = database.delete(USER_NAME, "name=?", names);
 			message("删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -196,7 +193,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 			contentValues.put("name", user.getName());
 			contentValues.put("pwd", user.getPwd());
 			String[] names = { user.getName() };
-			number = database.update(TABLE_NAME, contentValues, "name=?", names);
+			number = database.update(USER_NAME, contentValues, "name=?", names);
 			message("更改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -229,7 +226,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 		SQLiteDatabase database = mySQLiteOpenHelperStudent.getReadableDatabase();
 		try {
 			String[] names = { user.getName() };
-			Cursor cursor = database.query(TABLE_NAME, null, "name=?", names, null, null, null);
+			Cursor cursor = database.query(USER_NAME, null, "name=?", names, null, null, null);
 			if(cursor.moveToNext()){
 				int pwdIndex = cursor.getColumnIndex("pwd");
 				pwd = cursor.getString(pwdIndex);
@@ -252,20 +249,21 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	 * @return
 	 */
 	
-	public ArrayList<User> queryUsers(){
-		ArrayList<User> users = new ArrayList<User>();
+	public List<User> queryUsers(){
+		System.out.println("SQLite of queryUsers");
+		List<User> users = new ArrayList<User>();
 		SQLiteDatabase database = mySQLiteOpenHelperStudent.getReadableDatabase();
 		try {
-			String[] names = { null };
-			Cursor cursor = database.query(TABLE_NAME, null, "name!=?", names, null, null, null);
+//			String[] names = { null };
+			Cursor cursor = database.rawQuery("select * from user",null);
 			while(cursor.moveToNext()){
 				User user = new User();
 				int nameIndex = cursor.getColumnIndex("name");
 				int pwdIndex = cursor.getColumnIndex("pwd");
-				if (cursor.getString(nameIndex) == null
-						|| cursor.getString(pwdIndex) == null) {
-					continue;
-				}
+//				if (cursor.getString(nameIndex) == null
+//						|| cursor.getString(pwdIndex) == null) {
+//					continue;
+//				}
 				user.setName(cursor.getString(nameIndex));
 				user.setPwd(cursor.getString(pwdIndex));
 				users.add(user);

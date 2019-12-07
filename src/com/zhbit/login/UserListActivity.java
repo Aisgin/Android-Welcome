@@ -36,8 +36,9 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_userlist);
 		System.out.print("UserListActivity be start");
+		setContentView(R.layout.activity_userlist);
+		helper = MyDatabaseOpenHelper.getInstance(this);
 		initView();
 	}
 
@@ -49,18 +50,31 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 		listView.setAdapter(simpleAdapter);
 		btnBack.setOnClickListener(this);
 		// listView.setOnItemClickListener(this);
-		helper = MyDatabaseOpenHelper.getInstance(this);
+		
 	}
 
 	private List<Map<String, ?>> getData() {
 		List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
-		ArrayList<User> users = helper.queryUsers();
-		for (int i = 0; i < users.size(); i++) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(from[0], users.get(i).getName());
-			map.put(from[1], users.get(i).getPwd());
-			list.add(map);
+		List<User> users = new ArrayList<User>();
+		List<User> cusers = (ArrayList<User>)helper.queryUsers();
+//		users = (ArrayList<User>)helper.queryUsers().clone();
+	
+		for( User cuser : cusers){
+			System.out.print(cuser.getName());
+			if(cuser.getName()!=null && cuser.getPwd()!=null){
+				users.add(cuser);
+			}
+			
 		}
+		if(users.size()>0){
+			for (int i = 0; i < users.size(); i++) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put(from[0], users.get(i).getName());
+				map.put(from[1], users.get(i).getPwd());
+				list.add(map);
+			}
+		}
+		System.out.print("****************"+users.size());
 		return list;
 
 	}
