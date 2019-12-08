@@ -1,6 +1,6 @@
 package com.zhbit.sql;
 
-import com.zhbit.dao.User;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.zhbit.bean.User;
 
 /**
  * 数据库表管理 MySQLiteOpenHelperStudent （负责 生成打开据库 / 生成打开表 / 升级表 / 完成此数据库表的增删改查逻辑处理

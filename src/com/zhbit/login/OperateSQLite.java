@@ -1,6 +1,7 @@
 package com.zhbit.login;
 
-import com.zhbit.dao.User;
+
+import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
 import com.zhbit.sql.MyDatabaseOpenHelper;
 

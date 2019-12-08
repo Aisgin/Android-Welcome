@@ -13,6 +13,10 @@ import android.widget.ImageView;
 
 public class CircleImageView extends ImageView {
 
+	/**
+	 * 控件标签
+	 * 将图片截取成圆形边框
+	 */
 	private Paint mPaint; // 画笔
 
 	private int mRadius; // 圆形图片的半径

@@ -1,8 +1,9 @@
 package com.zhbit.login;
 
-import com.zhbit.dao.User;
+
 import com.zhbit.sql.MyDatabaseOpenHelper;
 import com.zhbit.utils.UserInfoUtils;
+import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
 import android.app.Activity;
 import android.content.Context;
@@ -92,9 +93,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		} else {
 			if(checkPwd() == 1){
 				message("登陆成功");
-				User user = new User();
-				user.setName(userStr);
-				user.setPwd(pwdStr);
+				User user = new User(userStr,userStr);
 				boolean result = cb_save.isChecked(); // 勾选的状态
 				if (result) {
 					if(save(user)){

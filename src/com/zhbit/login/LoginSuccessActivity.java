@@ -1,5 +1,7 @@
 package com.zhbit.login;
 
+
+import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import com.zhbit.dao.User;
 
 public class LoginSuccessActivity extends Activity implements OnClickListener {
 	

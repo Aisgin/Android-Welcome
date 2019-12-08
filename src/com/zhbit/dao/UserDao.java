@@ -1,5 +1,6 @@
 package com.zhbit.dao;
 
+import com.zhbit.bean.User;
 import com.zhbit.utils.DBHelper;
 
 import android.content.Context;

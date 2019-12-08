@@ -1,14 +1,13 @@
 package com.zhbit.login;
 
+import com.zhbit.bean.User;
+import com.zhbit.hellowelcome.R;
+import com.zhbit.sql.MyDatabaseOpenHelper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.zhbit.dao.User;
-import com.zhbit.hellowelcome.R;
-import com.zhbit.sql.MyDatabaseOpenHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class UserListActivity extends Activity implements OnItemClickListener,

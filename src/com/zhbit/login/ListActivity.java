@@ -1,20 +1,17 @@
 package com.zhbit.login;
 
+import com.zhbit.bean.User;
+import com.zhbit.hellowelcome.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.zhbit.dao.User;
-import com.zhbit.hellowelcome.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
