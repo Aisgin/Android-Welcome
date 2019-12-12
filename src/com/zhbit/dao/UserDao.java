@@ -12,7 +12,7 @@ public class UserDao {
 	SQLiteDatabase db;
 
 	public UserDao(Context context) {
-		dbHepler = new DBHelper(context);
+		dbHepler = DBHelper.getInstance(context);;
 	}
 
 	/**

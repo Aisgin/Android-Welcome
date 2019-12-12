@@ -3,7 +3,7 @@ package com.zhbit.login;
 
 import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.sql.MyDatabaseOpenHelper;
+import com.zhbit.utils.DBHelper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,7 +21,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 	private EditText etUser, etPwd;
 	private Button intert, delete, update, query, queryUsers;
 	private Context mcontext;
-	private MyDatabaseOpenHelper helper;
+	private DBHelper helper;
 	
 	
 	
@@ -31,7 +31,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_sqlite);
 		mcontext = this;
 		initView();
-		helper = MyDatabaseOpenHelper.getInstance(this);
+		helper = DBHelper.getInstance(this);
 	}
 	
 	private void initView(){

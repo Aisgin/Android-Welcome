@@ -2,7 +2,7 @@ package com.zhbit.login;
 
 import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.sql.MyDatabaseOpenHelper;
+import com.zhbit.utils.DBHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 	private String[] from = { "name", "pwd" };
 	private int[] to = { R.id.tv_userlist_name, R.id.tv_userlist_pwd };
 	private Button btnBack;
-	private MyDatabaseOpenHelper helper;
+	private DBHelper helper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		System.out.print("UserListActivity be start");
 		setContentView(R.layout.activity_userlist);
-		helper = MyDatabaseOpenHelper.getInstance(this);
+		helper = DBHelper.getInstance(this);
 		initView();
 	}
 

@@ -1,7 +1,7 @@
 package com.zhbit.login;
 
 
-import com.zhbit.sql.MyDatabaseOpenHelper;
+import com.zhbit.utils.DBHelper;
 import com.zhbit.utils.UserInfoUtils;
 import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
@@ -27,14 +27,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private TextView tv_forgetpwd;
 	private CheckBox cb_save;
 	private Context mcontext;
-	private MyDatabaseOpenHelper helper;
+	private DBHelper helper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
-		helper = MyDatabaseOpenHelper.getInstance(this);
+		helper = DBHelper.getInstance(this);
 		mcontext = this;
 		initView();
 		getInfo();

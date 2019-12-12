@@ -3,7 +3,7 @@ package com.zhbit.login;
 
 import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.sql.MyDatabaseOpenHelper;
+import com.zhbit.utils.DBHelper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,13 +21,13 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	
 	private EditText etUser,etPwd;
 	private Button btnResetting,btnSubmit,btnBack;
-	private MyDatabaseOpenHelper helper;
+	private DBHelper helper;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        helper = MyDatabaseOpenHelper.getInstance(this);
+        helper = DBHelper.getInstance(this);
         initView();
 	}
 
