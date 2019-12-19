@@ -2,12 +2,12 @@ package com.zhbit.bean;
 
 import java.io.Serializable;
 
+/**
+ * User对象模型
+ * @author lenat
+ *
+ */
 public class User  implements Serializable{
-	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1746121998673433467L;
 	
 	private int id;

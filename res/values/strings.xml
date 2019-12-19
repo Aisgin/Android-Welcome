@@ -7,6 +7,7 @@
     <string name="app_name_login">Sgin in</string>
     <string name="app_name_aboutus">About Us</string>
     <string name="app_name_user_list">List of User</string>
+    <string name="app_name_starlist">Star Images</string>
     <string name="action_settings">Settings</string>
     <string name="rts">广告剩余时间：</string>
 	<string name="phone_hint">输入电话号码</string>

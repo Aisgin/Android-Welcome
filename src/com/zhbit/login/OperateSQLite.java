@@ -2,9 +2,8 @@ package com.zhbit.login;
 
 
 import com.zhbit.bean.User;
+import com.zhbit.dao.UserDao;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.utils.DBHelper;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +20,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 	private EditText etUser, etPwd;
 	private Button intert, delete, update, query, queryUsers;
 	private Context mcontext;
-	private DBHelper helper;
+	private UserDao dao;
 	
 	
 	
@@ -31,7 +30,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_sqlite);
 		mcontext = this;
 		initView();
-		helper = DBHelper.getInstance(this);
+		dao = new UserDao(this);
 	}
 	
 	private void initView(){
@@ -88,14 +87,14 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		helper.insertData(user);
+		dao.insertData(user);
 		
 	}
 	private void delete() {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		helper.deleteData(user);
+		dao.deleteData(user);
 		
 	}
 
@@ -103,7 +102,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		int number = helper.updateData(user);
+		int number = dao.updateData(user);
 		if (number != -1){
 			message("ÐÞ¸Ä³É¹¦");
 		} else {
@@ -115,7 +114,7 @@ public class OperateSQLite extends Activity implements OnClickListener {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		String pwd = helper.queryData(user);
+		String pwd = dao.queryData(user);
 		message(pwd);
 	}
 	

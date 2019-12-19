@@ -2,6 +2,8 @@ package com.zhbit.login;
 
 import com.zhbit.bean.User;
 import com.zhbit.hellowelcome.R;
+import com.zhbit.utils.UserInfoUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 个人中心Activity
+ * 显示用户头像、名字信息及操作列表
+ * @author lenat
+ *
+ */
 public class ListActivity extends Activity implements OnItemClickListener {
 	private ListView listView;
 	private TextView nameText;
@@ -38,8 +46,12 @@ public class ListActivity extends Activity implements OnItemClickListener {
 
 		listView = (ListView) findViewById(R.id.listView1);
 		nameText = (TextView) findViewById(R.id.info_username);
-		Intent intent = getIntent();
-		User user = (User) intent.getSerializableExtra("user");
+//		Intent intent = getIntent();
+//		User user = (User) intent.getSerializableExtra("user");
+//		nameText.setText(user.getName());
+		UserInfoUtils userinfoutiles = new UserInfoUtils();
+//		User user = userinfoutiles.getInfoForLocal(mcontext);
+		User user = userinfoutiles.getInfoForSDCard(this);
 		nameText.setText(user.getName());
 		SimpleAdapter simpleAdapter = new SimpleAdapter(this, getData(),
 				R.layout.activity_list_item, from, to);
@@ -58,11 +70,8 @@ public class ListActivity extends Activity implements OnItemClickListener {
 			map.put(from[0], imageIds[i]);
 			map.put(from[1], listString[i]);
 			list.add(map);
-
 		}
-
 		return list;
-
 	}
 
 	@Override
@@ -86,7 +95,6 @@ public class ListActivity extends Activity implements OnItemClickListener {
 		message(position + "@@@" + id);
 		switch (position) {
 		case 0:
-
 			break;
 
 		case 1:

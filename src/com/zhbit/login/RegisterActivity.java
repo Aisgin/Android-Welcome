@@ -1,10 +1,8 @@
 package com.zhbit.login;
 
-
 import com.zhbit.bean.User;
+import com.zhbit.dao.UserDao;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.utils.DBHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,21 +11,19 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class RegisterActivity extends Activity implements OnClickListener {
 	
 	private EditText etUser,etPwd;
 	private Button btnResetting,btnSubmit,btnBack;
-	private DBHelper helper;
+	private UserDao dao;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        helper = DBHelper.getInstance(this);
+        dao = new UserDao(this);
         initView();
 	}
 
@@ -96,7 +92,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
 		user.setPwd(etPwd.getText().toString().trim());
-		helper.insertData(user);
+		dao.insertData(user);
 	}
 	
 	private void back(){

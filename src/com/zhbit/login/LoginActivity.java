@@ -1,9 +1,8 @@
 package com.zhbit.login;
 
-
-import com.zhbit.utils.DBHelper;
 import com.zhbit.utils.UserInfoUtils;
 import com.zhbit.bean.User;
+import com.zhbit.dao.UserDao;
 import com.zhbit.hellowelcome.R;
 import android.app.Activity;
 import android.content.Context;
@@ -27,14 +26,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private TextView tv_forgetpwd;
 	private CheckBox cb_save;
 	private Context mcontext;
-	private DBHelper helper;
+	private UserDao dao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
-		helper = DBHelper.getInstance(this);
+		dao = new UserDao(this);
 		mcontext = this;
 		initView();
 		getInfo();
@@ -118,7 +117,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		int result = -1;
 		User user = new User();
 		user.setName(etUser.getText().toString().trim());
-		String pwd = helper.queryData(user);
+		String pwd = dao.queryData(user);
 		if ( pwd.equals(etPwd.getText().toString().trim())){
 			result = 1;
 		}

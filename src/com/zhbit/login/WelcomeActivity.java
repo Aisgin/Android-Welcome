@@ -29,7 +29,7 @@ public class WelcomeActivity extends Activity {
 				} else {
 					// 跳转到主界面
 					Intent intent = new Intent(WelcomeActivity.this,
-							OperateSQLite.class);
+							ListActivity.class);
 					startActivity(intent);
 					WelcomeActivity.this.finish();
 				}

@@ -10,6 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
+/**
+ * 个人中心 - 关于我们界面activity
+ * 显示作者、联系方式、老师
+ * @author lenat
+ *
+ */
 public class AboutUsActivity extends Activity implements OnClickListener {
 	private Button btnBack;
 

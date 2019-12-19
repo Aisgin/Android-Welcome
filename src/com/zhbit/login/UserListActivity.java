@@ -1,9 +1,8 @@
 package com.zhbit.login;
 
 import com.zhbit.bean.User;
+import com.zhbit.dao.UserDao;
 import com.zhbit.hellowelcome.R;
-import com.zhbit.utils.DBHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +19,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class UserListActivity extends Activity implements OnItemClickListener,
 		OnClickListener {
@@ -28,7 +26,7 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 	private String[] from = { "name", "pwd" };
 	private int[] to = { R.id.tv_userlist_name, R.id.tv_userlist_pwd };
 	private Button btnBack;
-	private DBHelper helper;
+	private UserDao dao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		System.out.print("UserListActivity be start");
 		setContentView(R.layout.activity_userlist);
-		helper = DBHelper.getInstance(this);
+		dao = new UserDao(this);
 		initView();
 	}
 
@@ -54,7 +52,7 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 	private List<Map<String, ?>> getData() {
 		List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
 		List<User> users = new ArrayList<User>();
-		List<User> cusers = (ArrayList<User>)helper.queryUsers();
+		List<User> cusers = (ArrayList<User>)dao.queryUsers();
 //		users = (ArrayList<User>)helper.queryUsers().clone();
 	
 		for( User cuser : cusers){
@@ -84,11 +82,11 @@ public class UserListActivity extends Activity implements OnItemClickListener,
 		return true;
 	}
 
-	private void message(String mes) {
-		Toast toast = Toast.makeText(getApplicationContext(), mes,
-				Toast.LENGTH_SHORT);
-		toast.show();
-	}
+//	private void message(String mes) {
+//		Toast toast = Toast.makeText(getApplicationContext(), mes,
+//				Toast.LENGTH_SHORT);
+//		toast.show();
+//	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,

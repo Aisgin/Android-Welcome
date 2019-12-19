@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 public class LoginSuccessActivity extends Activity implements OnClickListener {
 	
-	
-	private String name,pwd;
 	private TextView tvUser,tvPwd;
 	private Button btnToLogin;
 	private Button sqlTest;
